@@ -1,22 +1,15 @@
-<!-- 
+<?php
 
+// use Illuminate\Http\Request;
+use App\Modules\Citizens\Presentation\Controllers\CitizenController;
 use Illuminate\Support\Facades\Route;
 
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
+
 Route::prefix('v1')->group(function () {
-    Route::get('/health', [HealthController::class, 'index']);
-
     Route::prefix('citizens')->group(function () {
-        Route::post('/register', [CitizenAuthController::class, 'register'])
-            ->middleware('throttle:3,60');
-        Route::post('/login', [CitizenAuthController::class, 'login'])
-            ->middleware('throttle:10,60');
-        Route::post('/password-reset', [CitizenAuthController::class, 'requestReset'])
-            ->middleware('throttle:3,60');
-        Route::post('/password-reset/confirm', [CitizenAuthController::class, 'confirmReset']);
-
-        Route::middleware('auth:sanctum-citizens')->group(function () {
-            Route::get('/me', [CitizenAuthController::class, 'me']);
-            Route::post('/logout', [CitizenAuthController::class, 'logout']);
-        });
+        Route::post('/register', [CitizenController::class, 'register']);
     });
-}); -->
+});
