@@ -10,6 +10,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
     Route::prefix('citizens')->group(function () {
+        // Rutas públicas
         Route::post('/register', [CitizenController::class, 'register']);
+        Route::post('/login',    [CitizenController::class, 'login']);
+
+        // Rutas protegidas: requieren token válido del guard sanctum-citizens
+        Route::middleware('auth:sanctum-citizens')->group(function () {
+            Route::get('/me',     [CitizenController::class, 'me']);
+            Route::post('/logout',[CitizenController::class, 'logout']);
+        });
     });
 });

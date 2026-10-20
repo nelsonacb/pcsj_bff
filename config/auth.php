@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'sanctum-citizens' => [
+        'driver'   => 'sanctum',
+        'provider' => 'citizens',
+    ],
     ],
 
     /*
@@ -65,6 +70,10 @@ return [
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
 
+        'citizens' => [
+        'driver' => 'eloquent',
+        'model'  => App\Modules\Citizens\Infrastructure\Models\Citizen::class,
+    ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
