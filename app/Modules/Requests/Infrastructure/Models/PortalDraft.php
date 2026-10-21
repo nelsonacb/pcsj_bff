@@ -9,6 +9,7 @@ use App\Modules\Requests\Domain\DraftType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class PortalDraft extends Model
 {
@@ -32,5 +33,10 @@ class PortalDraft extends Model
     public function citizen(): BelongsTo
     {
         return $this->belongsTo(Citizen::class, 'citizen_id');
+    }
+
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(\App\Modules\Requests\Infrastructure\Models\PortalAttachment::class, 'draft_id');
     }
 }

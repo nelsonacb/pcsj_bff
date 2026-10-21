@@ -62,4 +62,10 @@ class Citizen extends Authenticatable
     {
         return $this->hasMany(\App\Modules\Requests\Infrastructure\Models\PortalDraft::class, 'citizen_id');
     }
+
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(\App\Modules\Requests\Infrastructure\Models\PortalAttachment::class, 'draft_id')
+            ->whereHas('draft', fn ($q) => $q->where('citizen_id', $this->id));
+    }
 }

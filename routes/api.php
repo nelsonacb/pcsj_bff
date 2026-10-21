@@ -2,6 +2,7 @@
 
 use App\Modules\Citizens\Presentation\Controllers\CitizenController;
 use App\Modules\Requests\Presentation\Controllers\DraftController;
+use App\Modules\Requests\Presentation\Controllers\AttachmentController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->group(function () {
@@ -28,6 +29,9 @@ Route::prefix('v1')->group(function () {
             Route::get('/drafts/{id}',    [DraftController::class, 'show']);
             Route::patch('/drafts/{id}',  [DraftController::class, 'update']);
             Route::delete('/drafts/{id}', [DraftController::class, 'destroy']);
+            Route::post('/attachments',        [AttachmentController::class, 'store']);
+            Route::get('/attachments/{id}',    [AttachmentController::class, 'show']);
+            Route::delete('/attachments/{id}', [AttachmentController::class, 'destroy']);
         });
     });
 });
