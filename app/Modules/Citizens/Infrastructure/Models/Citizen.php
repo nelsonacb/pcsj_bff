@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Citizen extends Authenticatable
 {
@@ -55,5 +56,10 @@ class Citizen extends Authenticatable
     public function verifyPassword(string $plainPassword): bool
     {
         return Hash::check($plainPassword, $this->password_hash);
+    }
+
+    public function drafts(): HasMany
+    {
+        return $this->hasMany(\App\Modules\Requests\Infrastructure\Models\PortalDraft::class, 'citizen_id');
     }
 }
