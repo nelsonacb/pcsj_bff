@@ -26,7 +26,7 @@ class RegisterCitizenRequest extends FormRequest
                 'size:11',
                 function (string $attribute, mixed $value, \Closure $fail) {
                     if (!CubanIdentityNumber::isValid((string) $value)) {
-                        $fail('El número de identidad cubano no es válido.');
+                        $fail('The Cuban identity number is not valid.');
                     }
                 },
                 Rule::unique('citizens', 'identity_number'),
@@ -52,16 +52,16 @@ class RegisterCitizenRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'identity_number.required' => 'El número de identidad es obligatorio.',
-            'identity_number.size'     => 'El número de identidad debe tener 11 dígitos.',
-            'identity_number.unique'   => 'Ya existe una cuenta con ese número de identidad.',
-            'email.required'           => 'El correo electrónico es obligatorio.',
-            'email.email'              => 'El correo electrónico no es válido.',
-            'email.unique'             => 'Ya existe una cuenta con ese correo electrónico.',
-            'password.required'        => 'La contraseña es obligatoria.',
-            'password.confirmed'       => 'Las contraseñas no coinciden.',
-            'password.min'             => 'La contraseña debe tener al menos 12 caracteres.',
-            'full_name.required'       => 'El nombre completo es obligatorio.',
+            'identity_number.required' => 'The identity number is required.',
+            'identity_number.size'     => 'The identity number must be 11 digits.',
+            'identity_number.unique'   => 'An account with that identity number already exists.',
+            'email.required'           => 'The email address is required.',
+            'email.email'              => 'The email address is not valid.',
+            'email.unique'             => 'An account with that email address already exists.',
+            'password.required'        => 'The password is required.',
+            'password.confirmed'       => 'The passwords do not match.',
+            'password.min'             => 'The password must be at least 12 characters long.',
+            'full_name.required'       => 'The full name is required.',
         ];
     }
 }

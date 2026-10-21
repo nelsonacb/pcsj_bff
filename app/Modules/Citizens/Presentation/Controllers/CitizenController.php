@@ -14,9 +14,7 @@ use Illuminate\Http\Request;
 
 class CitizenController
 {
-    /**
-     * POST /api/v1/citizens/register
-     */
+
     public function register(RegisterCitizenRequest $request): JsonResponse
     {
         $data = $request->validated();
@@ -54,7 +52,7 @@ class CitizenController
         }
 
         return response()->json(
-            ['message' => 'Credenciales incorrectas.'],
+            ['message' => 'Incorrect credentials.'],
             401
         );
     }
@@ -62,7 +60,7 @@ class CitizenController
     
     if ($citizen->locked_until && $citizen->locked_until->isFuture()) {
         return response()->json([
-            'message'      => 'Cuenta bloqueada por intentos fallidos. Intente más tarde.',
+            'message'      => 'Account locked due to failed attempts. Please try again later.',
             'locked_until' => $citizen->locked_until->toIso8601String(),
         ], 423);
     }
@@ -84,15 +82,13 @@ class CitizenController
 
 public function me(Request $request): JsonResponse
 {
-    // $request->user() devuelve el Citizen autenticado (gracias al guard)
     return (new CitizenResource($request->user()))->response();
 }
 
 public function logout(Request $request): JsonResponse
 {
-    // Revoca SOLO el token actual (no todas las sesiones del ciudadano)
     $request->user()->currentAccessToken()->delete();
 
-    return response()->json(['message' => 'Sesión cerrada.']);
+    return response()->json(['message' => 'Session closed.']);
 }
 }

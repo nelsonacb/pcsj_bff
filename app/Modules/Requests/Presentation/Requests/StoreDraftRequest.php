@@ -26,9 +26,9 @@ class StoreDraftRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'type.required' => 'El tipo de borrador es obligatorio.',
-            'type.enum'     => 'El tipo debe ser retirement_request o entity_request.',
-            'payload.array' => 'El contenido del borrador debe ser un objeto.',
+            'type.required' => 'The draft type is required.',
+            'type.enum'     => 'The type must be retirement_request or entity_request.',
+            'payload.array' => 'The draft content must be an object.',
         ];
     }
 }

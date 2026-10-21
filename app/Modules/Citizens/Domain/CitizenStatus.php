@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Citizens\Domain;
 
-/**
- * Estado de una cuenta ciudadana en el portal.
- */
+
 enum CitizenStatus: string
 {
     case Unverified  = 'unverified';  

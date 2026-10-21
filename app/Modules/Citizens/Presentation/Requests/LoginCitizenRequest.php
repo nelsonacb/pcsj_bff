@@ -24,8 +24,8 @@ class LoginCitizenRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'identifier.required' => 'Debe indicar su correo o número de identidad.',
-            'password.required'   => 'La contraseña es obligatoria.',
+            'identifier.required' => 'You must provide your email or identity number.',
+            'password.required'   => 'The password is required.',
         ];
     }
 }

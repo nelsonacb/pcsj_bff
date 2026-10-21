@@ -23,8 +23,8 @@ class UpdateDraftRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'payload.required' => 'El contenido del borrador es obligatorio.',
-            'payload.array'    => 'El contenido del borrador debe ser un objeto.',
+            'payload.required' => 'The draft content is required.',
+            'payload.array'    => 'The draft content must be an object.',
         ];
     }
 }

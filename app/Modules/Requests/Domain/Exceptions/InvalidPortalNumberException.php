@@ -10,6 +10,6 @@ final class InvalidPortalNumberException extends DomainException
 {
     public static function invalidFormat(string $value): self
     {
-        return new self("Número de portal inválido: '{$value}'. Formato esperado: PCSJ-AAAA-XXXXXXXX.");
+        return new self("Invalid portal number: '{$value}'. Expected format: PCSJ-AAAA-XXXXXXXX.");
     }
 }

@@ -33,12 +33,12 @@ class StoreAttachmentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'file.required' => 'Debe adjuntar un archivo.',
-            'file.file'     => 'El archivo no es válido.',
-            'file.mimes'    => 'Solo se permiten archivos PDF, JPG o PNG.',
-            'file.max'      => 'El archivo no puede superar los 10 MB.',
-            'draft_id.required' => 'Debe indicar el borrador al que pertenece el archivo.',
-            'draft_id.exists'   => 'El borrador indicado no existe.',
+            'file.required' => 'You must attach a file.',
+            'file.file'     => 'The file is not valid.',
+            'file.mimes'    => 'Only PDF, JPG or PNG files are allowed.',
+            'file.max'      => 'The file may not exceed 10 MB.',
+            'draft_id.required' => 'You must specify the draft the file belongs to.',
+            'draft_id.exists'   => 'The specified draft does not exist.',
         ];
     }
 }
