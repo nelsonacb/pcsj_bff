@@ -11,6 +11,7 @@ use App\Modules\Citizens\Presentation\Requests\LoginCitizenRequest;
 use App\Modules\Citizens\Presentation\Resources\CitizenResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class CitizenController
 {
@@ -27,6 +28,8 @@ class CitizenController
         $citizen->status          = CitizenStatus::Unverified;
         $citizen->setPassword($data['password']);
         $citizen->save();
+
+        event(new Registered($citizen));
 
         return (new CitizenResource($citizen))
             ->response()

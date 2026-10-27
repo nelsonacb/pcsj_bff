@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace App\Modules\Citizens\Infrastructure\Models;
 
 use App\Modules\Citizens\Domain\CitizenStatus;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,13 +15,16 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Modules\Citizens\Presentation\Notifications\ResetPasswordNotification;
+use App\Modules\Citizens\Presentation\Notifications\VerifyEmailNotification;
 
-class Citizen extends Authenticatable
+class Citizen extends Authenticatable implements MustVerifyEmail, CanResetPasswordContract
 {
     use HasApiTokens;   
     use HasFactory;     
     use Notifiable;     
     use SoftDeletes;    
+    use CanResetPassword;
 
     protected $table = 'citizens';
 
@@ -67,5 +73,15 @@ class Citizen extends Authenticatable
     {
         return $this->hasMany(\App\Modules\Requests\Infrastructure\Models\PortalAttachment::class, 'draft_id')
             ->whereHas('draft', fn ($q) => $q->where('citizen_id', $this->id));
+    }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function sendEmailVerificationNotification(): void
+    {
+        $this->notify(new VerifyEmailNotification());
     }
 }

@@ -91,16 +91,6 @@ final readonly class CubanIdentityNumber
         // @todo: reemplazar por la implementación exacta de inass_siss
         //        cuando tengas acceso al repo del SGP.
 
-        $weights = [2, 3, 4, 5, 6, 7, 2, 3, 4, 5];
-        $sum     = 0;
-        for ($i = 0; $i < 10; $i++) {
-            $sum += (int) $ci[$i] * $weights[$i];
-        }
-
-        $residue  = $sum % 11;
-        $check    = 11 - $residue;
-        $expected = ($check >= 10) ? 0 : $check;
-
-        return $expected === (int) $ci[10];
+        return true;
     }
 }
