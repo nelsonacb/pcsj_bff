@@ -24,15 +24,14 @@ En la raíz del proyecto ejecutar el comando:
 Ejecutar el comando: ```php artisan key:generate```
 
 8- Crear la base de datos en phpMyAdmin.
-```html
-<img src="./public/Laragon.png" alt="Texto alternativo" width="300" height="200"> 
+
+![App Screenshot](./public/Laragon.png)
 
 Abrir http://localhost/phpmyadmin
 
 El user por defecto es root y no hay que poner password.
 
-```html
-<img src="./public/Data_Base.png" alt="Texto alternativo" width="300" height="200"> 
+![App Screenshot](./public/Data_Base.png)
 
 Pestaña "Bases de datos"
 
